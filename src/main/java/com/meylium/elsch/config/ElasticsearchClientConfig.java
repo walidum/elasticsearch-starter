@@ -12,22 +12,22 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.meylium.elsch.repo")
-@ComponentScan(basePackages = { "com.meylium.elsch" })
+@ComponentScan(basePackages = {"com.meylium.elsch"})
 public class ElasticsearchClientConfig extends AbstractElasticsearchConfiguration {
 
-  @Value("elasticsearch.uri")
-  private  String hostAndPort ;
+    @Value("elasticsearch.uri")
+    private String hostAndPort;
 
-  @Override
-  @Bean
-  public RestHighLevelClient elasticsearchClient() {
+    @Override
+    @Bean
+    public RestHighLevelClient elasticsearchClient() {
 
-  final ClientConfiguration clientConfiguration =
-    ClientConfiguration
-      .builder()
-      .connectedTo(hostAndPort)
-      .build();
-  
-  return RestClients.create(clientConfiguration).rest();
-  }
+        final ClientConfiguration clientConfiguration =
+                ClientConfiguration
+                        .builder()
+                        .connectedTo("localhost:9200")
+                        .build();
+
+        return RestClients.create(clientConfiguration).rest();
+    }
 }
