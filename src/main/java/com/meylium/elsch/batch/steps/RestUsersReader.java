@@ -18,7 +18,7 @@ public class RestUsersReader implements ItemReader<UserDto> {
     private List<UserDto> usersData;
     private int nextUserIndex;
 
-    RestUsersReader(String restUri, RestTemplate restTemplate) {
+    public RestUsersReader(String restUri, RestTemplate restTemplate) {
         this.restUri = restUri;
         this.restTemplate = restTemplate;
         this.nextUserIndex = 0;

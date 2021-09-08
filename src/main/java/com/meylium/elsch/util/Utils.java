@@ -6,10 +6,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -35,4 +41,14 @@ public class Utils {
         return new String(inputStream.readAllBytes());
     }
 
+    public static Map<String, Object> introspect(Object obj) throws Exception {
+        Map<String, Object> result = new HashMap<String, Object>();
+        BeanInfo info = Introspector.getBeanInfo(obj.getClass());
+        for (PropertyDescriptor pd : info.getPropertyDescriptors()) {
+            Method reader = pd.getReadMethod();
+            if (reader != null)
+                result.put(pd.getName(), reader.invoke(obj));
+        }
+        return result;
+    }
 }

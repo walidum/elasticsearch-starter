@@ -1,6 +1,7 @@
 package com.meylium.elsch.batch.steps;
 
 import com.meylium.elsch.model.User;
+import com.meylium.elsch.util.Utils;
 import org.apache.http.HttpHost;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
@@ -20,17 +21,20 @@ import java.util.List;
 public class UsersIndiesWriter implements ItemWriter<User> {
     @Override
     public void write(List<? extends User> list) throws Exception {
+        if (list == null || list.isEmpty()) return;
         var result = bulkInsert(list);
         result.forEach(user -> System.out.println(user));
     }
 
-    private List<? extends User> bulkInsert(List<? extends User> users) {
+    private List<? extends User> bulkInsert(List<? extends User> users) throws Exception {
+        users.forEach(user -> System.out.println(user));
         BulkRequest bulkRequest = new BulkRequest();
-        users.forEach(user -> {
+        for (User user : users) {
             IndexRequest indexRequest = new IndexRequest("users");
             indexRequest.id(user.getId());
+            indexRequest.source(Utils.introspect(user));
             bulkRequest.add(indexRequest);
-        });
+        }
 
         try {
             BulkResponse bulk = client().bulk(bulkRequest, RequestOptions.DEFAULT);

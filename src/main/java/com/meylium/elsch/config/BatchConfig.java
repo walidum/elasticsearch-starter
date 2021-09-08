@@ -2,9 +2,11 @@ package com.meylium.elsch.config;
 
 
 import com.meylium.elsch.batch.listners.JobCompletionListener;
-import com.meylium.elsch.batch.steps.Processor;
-import com.meylium.elsch.batch.steps.Reader;
-import com.meylium.elsch.batch.steps.Writer;
+import com.meylium.elsch.batch.steps.RestUsersReader;
+import com.meylium.elsch.batch.steps.UsersDtosProcessor;
+import com.meylium.elsch.batch.steps.UsersIndiesWriter;
+import com.meylium.elsch.model.User;
+import com.meylium.elsch.util.dtos.UserDto;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -39,10 +41,10 @@ public class BatchConfig {
     @Bean
     public Step Step1() {
         return stepBuilderFactory.get("Step1")
-                .<String, String>chunk(1)
-                .reader(new Reader())
-                .processor(new Processor())
-                .writer(new Writer())
+                .<UserDto, User>chunk(1)
+                .reader(new RestUsersReader("https://jsonplaceholder.typicode.com/users", newRestTemplate()))
+                .processor(new UsersDtosProcessor())
+                .writer(new UsersIndiesWriter())
                 .build();
     }
 
