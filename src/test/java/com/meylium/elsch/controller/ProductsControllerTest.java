@@ -42,8 +42,4 @@ class ProductsControllerTest {
         Assertions.assertEquals(list.size(), 0);
 
     }
-
-    @Test
-    void all() {
-    }
 }
