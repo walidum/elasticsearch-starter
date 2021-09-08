@@ -13,6 +13,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class BatchConfig {
@@ -49,5 +50,10 @@ public class BatchConfig {
     @Bean
     public JobExecutionListener listener() {
         return new JobCompletionListener();
+    }
+
+    @Bean
+    public RestTemplate newRestTemplate() {
+        return new RestTemplate();
     }
 }
