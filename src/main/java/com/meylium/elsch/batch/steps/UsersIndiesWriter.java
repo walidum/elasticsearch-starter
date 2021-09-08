@@ -22,12 +22,10 @@ public class UsersIndiesWriter implements ItemWriter<User> {
     @Override
     public void write(List<? extends User> list) throws Exception {
         if (list == null || list.isEmpty()) return;
-        var result = bulkInsert(list);
-        result.forEach(user -> System.out.println(user));
+        bulkInsert(list);
     }
 
     private List<? extends User> bulkInsert(List<? extends User> users) throws Exception {
-        users.forEach(user -> System.out.println(user));
         BulkRequest bulkRequest = new BulkRequest();
         for (User user : users) {
             IndexRequest indexRequest = new IndexRequest("users");
