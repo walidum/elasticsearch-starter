@@ -1,7 +1,7 @@
 package com.meylium.elsch.service;
 
 import com.meylium.elsch.model.Product;
-import com.meylium.elsch.repo.ProductRepo;
+import com.meylium.elsch.repo.elastic.ProductRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
