@@ -1,12 +1,9 @@
-package com.meylium.elsch;
+package com.meylium.elsch.controller;
 
 import com.meylium.elsch.model.Product;
 import com.meylium.elsch.repo.ProductRepo;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductsController {
@@ -26,6 +23,11 @@ public class ProductsController {
     public ResponseEntity<Iterable<Product>> all() {
         Iterable<Product> products = this.productRepo.findAll();
         return ResponseEntity.ok(products);
+    }
+
+    @DeleteMapping(path = "deleteall")
+    public void deleteAll() {
+        this.productRepo.deleteAll();
     }
 
 }
