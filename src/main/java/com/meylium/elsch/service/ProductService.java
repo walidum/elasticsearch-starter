@@ -35,4 +35,11 @@ public class ProductService {
         return this.productRepo.save(product);
     }
 
+    public Iterable<Product> findAll() {
+        return this.productRepo.findAll();
+    }
+
+    public void deleteAll() {
+        this.productRepo.deleteAll();
+    }
 }
