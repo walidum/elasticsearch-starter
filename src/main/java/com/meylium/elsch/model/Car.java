@@ -28,12 +28,14 @@ public class Car {
     private Double weight;
     @Field(type = FieldType.Double)
     private Double acceleration;
+    @Field(type = FieldType.Double)
+    private Double horsepower;
     @Field(type = FieldType.Integer)
     private Integer medel;
     @Field(type = FieldType.Keyword)
     private Origin origin;
 
-    private enum Origin {
+    public enum Origin {
         JAPAN,
         EUROPE,
         US
