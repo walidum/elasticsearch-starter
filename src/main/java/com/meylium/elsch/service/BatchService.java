@@ -15,11 +15,13 @@ import org.springframework.stereotype.Service;
 public class BatchService {
     private final JobLauncher jobLauncher;
     private final Job jobImportUsersFromApi;
+    private final Job jobImportCarsFromCsv;
 
 
-    public BatchService(JobLauncher jobLauncher, @Qualifier("batch1.job1") Job job) {
+    public BatchService(JobLauncher jobLauncher, @Qualifier("batch1.job1") Job job1, @Qualifier("batch2.importFromCsv") Job job2) {
         this.jobLauncher = jobLauncher;
-        this.jobImportUsersFromApi = job;
+        this.jobImportUsersFromApi = job1;
+        this.jobImportCarsFromCsv = job2;
     }
 
     public void startJobImportUsersFromApi() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
@@ -27,5 +29,12 @@ public class BatchService {
                 .addLong("time", System.currentTimeMillis())
                 .toJobParameters();
         jobLauncher.run(jobImportUsersFromApi, jobParameters);
+    }
+
+    public void startJobImportCarsFromCsv() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addLong("time", System.currentTimeMillis())
+                .toJobParameters();
+        jobLauncher.run(jobImportCarsFromCsv, jobParameters);
     }
 }

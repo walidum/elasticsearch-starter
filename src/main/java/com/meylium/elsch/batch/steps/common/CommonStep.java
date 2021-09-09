@@ -22,6 +22,7 @@ public class CommonStep {
     protected <T extends BaseIndex> List<T> bulkInsert(List<T> items, String indexName) throws Exception {
         BulkRequest bulkRequest = new BulkRequest();
         for (BaseIndex item : items) {
+            if (item.getId() == null || item.getId().isEmpty()) continue;
             IndexRequest indexRequest = new IndexRequest(indexName);
             indexRequest.id(item.getId());
             indexRequest.source(Utils.introspect((T) item));

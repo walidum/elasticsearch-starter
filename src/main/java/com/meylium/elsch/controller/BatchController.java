@@ -24,4 +24,14 @@ public class BatchController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @GetMapping(path = "importCars")
+    public ResponseEntity importCars() {
+        try {
+            batchService.startJobImportCarsFromCsv();
+            return ResponseEntity.ok("Job started ...");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
