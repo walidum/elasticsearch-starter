@@ -1,4 +1,4 @@
-package com.meylium.elsch.batch.steps;
+package com.meylium.elsch.batch.steps.users;
 
 import com.meylium.elsch.model.User;
 import com.meylium.elsch.util.Utils;

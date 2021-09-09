@@ -2,9 +2,9 @@ package com.meylium.elsch.config;
 
 
 import com.meylium.elsch.batch.listners.JobCompletionListener;
-import com.meylium.elsch.batch.steps.RestUsersReader;
-import com.meylium.elsch.batch.steps.UsersDtosProcessor;
-import com.meylium.elsch.batch.steps.UsersIndiesWriter;
+import com.meylium.elsch.batch.steps.users.RestUsersReader;
+import com.meylium.elsch.batch.steps.users.UsersDtosProcessor;
+import com.meylium.elsch.batch.steps.users.UsersIndiesWriter;
 import com.meylium.elsch.model.User;
 import com.meylium.elsch.util.dtos.UserDto;
 import org.springframework.batch.core.Job;
