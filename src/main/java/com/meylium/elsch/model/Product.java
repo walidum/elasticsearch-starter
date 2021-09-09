@@ -1,10 +1,16 @@
 package com.meylium.elsch.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+@Setter
+@Getter
+@NoArgsConstructor
 @Document(indexName = "new_product")
 public class Product {
     @Id
@@ -27,10 +33,7 @@ public class Product {
 
     @Field(type = FieldType.Keyword, name = "manufacturer")
     private String manufacturer;
-
-    public Product() {
-    }
-
+    
     public Product(String id, String name, Double price, Integer quantity, String category, String description, String manufacturer) {
         this.id = id;
         this.name = name;
@@ -41,59 +44,4 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
 }
