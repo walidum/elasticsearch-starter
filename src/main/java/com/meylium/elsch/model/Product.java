@@ -3,7 +3,6 @@ package com.meylium.elsch.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -12,9 +11,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Getter
 @NoArgsConstructor
 @Document(indexName = "new_product")
-public class Product {
-    @Id
-    private String id;
+public class Product extends BaseIndex {
 
     @Field(type = FieldType.Text, name = "name")
     private String name;
@@ -33,7 +30,7 @@ public class Product {
 
     @Field(type = FieldType.Keyword, name = "manufacturer")
     private String manufacturer;
-    
+
     public Product(String id, String name, Double price, Integer quantity, String category, String description, String manufacturer) {
         this.id = id;
         this.name = name;

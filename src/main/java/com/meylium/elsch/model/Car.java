@@ -13,9 +13,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @NoArgsConstructor
 @ToString
 @Document(indexName = "cars")
-public class Car {
-    @Field(type = FieldType.Text)
-    private String id;
+public class Car extends BaseIndex {
+
     @Field(type = FieldType.Text)
     private String name;
     @Field(type = FieldType.Double)
