@@ -2,9 +2,13 @@ package com.meylium.elsch.config;
 
 
 import com.meylium.elsch.batch.listners.JobCompletionListener;
+import com.meylium.elsch.batch.steps.cars.CarsIndeciesWriter;
+import com.meylium.elsch.batch.steps.cars.CarsProcessor;
+import com.meylium.elsch.batch.steps.cars.CsvCarsReader;
 import com.meylium.elsch.batch.steps.users.RestUsersReader;
 import com.meylium.elsch.batch.steps.users.UsersDtosProcessor;
 import com.meylium.elsch.batch.steps.users.UsersIndiesWriter;
+import com.meylium.elsch.model.Car;
 import com.meylium.elsch.model.User;
 import com.meylium.elsch.util.dtos.UserDto;
 import org.springframework.batch.core.Job;
@@ -40,6 +44,15 @@ public class BatchConfig {
                 .end().build();
     }
 
+    @Bean(name = "batch2.importFromCsv")
+    public Job ImportFromCsv() {
+        return jobBuilderFactory.get("importFromCsv")
+                .incrementer(new RunIdIncrementer())
+                .listener(listener())
+                .flow(Step2())
+                .end().build();
+    }
+
 
     @Bean
     public Step Step1() {
@@ -48,6 +61,16 @@ public class BatchConfig {
                 .reader(new RestUsersReader(env.getProperty("users.testing.uri"), newRestTemplate()))
                 .processor(new UsersDtosProcessor())
                 .writer(new UsersIndiesWriter())
+                .build();
+    }
+
+    @Bean
+    public Step Step2() {
+        return stepBuilderFactory.get("Step2")
+                .<String[], Car>chunk(1)
+                .reader(new CsvCarsReader("data/cars.csv"))
+                .processor(new CarsProcessor())
+                .writer(new CarsIndeciesWriter())
                 .build();
     }
 
