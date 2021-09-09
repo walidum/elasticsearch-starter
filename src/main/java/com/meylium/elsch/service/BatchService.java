@@ -18,7 +18,7 @@ public class BatchService {
     private final Job jobImportCarsFromCsv;
 
 
-    public BatchService(JobLauncher jobLauncher, @Qualifier("batch1.job1") Job job1, @Qualifier("batch2.importFromCsv") Job job2) {
+    public BatchService(JobLauncher jobLauncher, @Qualifier("batch1.importFromRestApi") Job job1, @Qualifier("batch2.importFromCsv") Job job2) {
         this.jobLauncher = jobLauncher;
         this.jobImportUsersFromApi = job1;
         this.jobImportCarsFromCsv = job2;

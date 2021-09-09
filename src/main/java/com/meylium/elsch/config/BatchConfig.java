@@ -35,9 +35,9 @@ public class BatchConfig {
     }
 
 
-    @Bean(name = "batch1.job1")
-    public Job Job1() {
-        return jobBuilderFactory.get("Job1")
+    @Bean(name = "batch1.importFromRestApi")
+    public Job importFromRestApi() {
+        return jobBuilderFactory.get("importFromRestApi")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener())
                 .flow(Step1())
@@ -45,7 +45,7 @@ public class BatchConfig {
     }
 
     @Bean(name = "batch2.importFromCsv")
-    public Job ImportFromCsv() {
+    public Job importFromCsv() {
         return jobBuilderFactory.get("importFromCsv")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener())
