@@ -2,6 +2,7 @@ package com.meylium.elsch.controller;
 
 import com.meylium.elsch.service.BatchService;
 import com.meylium.elsch.util.JobExecutionDto;
+import org.springframework.batch.core.JobInstance;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.NoSuchJobException;
 import org.springframework.batch.core.repository.JobRepository;
@@ -51,14 +52,13 @@ public class BatchController {
 
     @GetMapping(path = "history/{name}")
     public ResponseEntity batchHistory(@PathVariable final String name) {
-        System.out.println(name);
         int count = 0;
         try {
             count = jobExplorer.getJobInstanceCount(name);
         } catch (NoSuchJobException e) {
             return ResponseEntity.notFound().build();
         }
-        var result = jobExplorer.findJobInstancesByJobName(name, 0, count);
+        List<JobInstance> result = jobExplorer.findJobInstancesByJobName(name, 0, count);
         List<JobExecutionDto> toReturn = new ArrayList<>();
         result.stream().forEach(i -> {
             List<JobExecutionDto> l = jobExplorer.getJobExecutions(i).stream()
