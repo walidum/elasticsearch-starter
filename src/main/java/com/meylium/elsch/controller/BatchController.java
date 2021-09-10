@@ -61,7 +61,9 @@ public class BatchController {
         var result = jobExplorer.findJobInstancesByJobName(name, 0, count);
         List<JobExecutionDto> toReturn = new ArrayList<>();
         result.stream().forEach(i -> {
-            List<JobExecutionDto> l = jobExplorer.getJobExecutions(i).stream().map(item -> JobExecutionDto.toDto(item)).collect(Collectors.toList());
+            List<JobExecutionDto> l = jobExplorer.getJobExecutions(i).stream()
+                    .map(item -> JobExecutionDto.toDto(item))
+                    .collect(Collectors.toList());
             if (l != null || !l.isEmpty())
                 toReturn.addAll(l);
         });
