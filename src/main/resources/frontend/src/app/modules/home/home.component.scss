@@ -1,0 +1,36 @@
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.card {
+  width: 40rem;
+  height: 30rem;
+  background-color: #cae3f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.item {
+  width: 60%;
+  height: 3rem;
+  background-color: #8dbde8;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item span {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.item:hover {
+  background-color: #578cbb;
+}
