@@ -1,9 +1,9 @@
 <div class="header">
-  <mat-card class="header-content">
+  <mat-card [formGroup]="form" class="header-content">
     <span>Batch history </span>
     <mat-form-field appearance="fill">
       <mat-label>List of Batch</mat-label>
-      <mat-select>
+      <mat-select formControlName="name" (selectionChange)="loadJobHistory()">
         <mat-option *ngFor="let job of jobs" [value]="job.name">
           {{job.displayName}}
         </mat-option>
