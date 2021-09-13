@@ -1,6 +1,14 @@
 <div class="header">
   <mat-card class="header-content">
     <span>Batch history </span>
+    <mat-form-field appearance="fill">
+      <mat-label>List of Batch</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let job of jobs" [value]="job.name">
+          {{job.displayName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-card>
 </div>
 <div class="table-container">

@@ -1,12 +1,14 @@
 package com.meylium.elsch.controller;
 
 import com.meylium.elsch.service.BatchService;
+import com.meylium.elsch.util.JobDto;
 import com.meylium.elsch.util.JobExecutionDto;
 import org.springframework.batch.core.JobInstance;
 import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.NoSuchJobException;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,6 +68,13 @@ public class BatchController {
                 toReturn.addAll(l);
         });
         return ResponseEntity.ok(toReturn);
+    }
+
+    @GetMapping(path = "all")
+    public ResponseEntity all() {
+        List<JobDto> jobs = List.of(new JobDto("importFromRestApi", "Migrate Users"),
+                new JobDto("importFromCsv", "Migrate cars"));
+        return ResponseEntity.status(HttpStatus.OK).body(jobs);
     }
 
 }
