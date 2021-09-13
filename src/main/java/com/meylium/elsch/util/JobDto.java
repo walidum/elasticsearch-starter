@@ -13,4 +13,5 @@ import lombok.Setter;
 public class JobDto extends BaseIndex {
     private String name;
     private String displayName;
+    private String description;
 }

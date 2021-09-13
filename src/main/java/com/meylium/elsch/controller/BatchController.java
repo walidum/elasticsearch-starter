@@ -72,9 +72,20 @@ public class BatchController {
 
     @GetMapping(path = "all")
     public ResponseEntity all() {
-        List<JobDto> jobs = List.of(new JobDto("importFromRestApi", "Migrate Users"),
-                new JobDto("importFromCsv", "Migrate cars"));
+        List<JobDto> jobs = List.of(
+                new JobDto("importFromRestApi", "Migrate Users", "This batch import data from rest api and store them as index in elasticsearch database"),
+                new JobDto("importFromCsv", "Migrate cars", "This batch import data from rest csv file and store them as index in elasticsearch database")
+        );
         return ResponseEntity.status(HttpStatus.OK).body(jobs);
+    }
+
+    @GetMapping(path = "one/{name}")
+    public ResponseEntity<JobDto> one(@PathVariable(name = "name") final String name) {
+        List<JobDto> jobs = List.of(
+                new JobDto("importFromRestApi", "Migrate Users", "This batch import data from rest api and store them as index in elasticsearch database"),
+                new JobDto("importFromCsv", "Migrate cars", "This batch import data from rest csv file and store them as index in elasticsearch database")
+        );
+        return ResponseEntity.ok(jobs.stream().filter(job -> job.getName().equals(name)).findFirst().orElse(null));
     }
 
 }
