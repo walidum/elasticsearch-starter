@@ -12,21 +12,15 @@
       <span>Ignored rows</span>
       <span>Status</span>
     </mat-card>
-    <mat-card class="item row">
-      <span>01</span>
-      <span>20-02-2021</span>
-      <span>21</span>
-      <span>02</span>
-      <span>COMPLETED</span>
+    <mat-card *ngFor="let line of historyLines" class="item row">
+      <span>{{line.jobInstance.id}}</span>
+      <span>{{line.createTime|date}}</span>
+      <span>{{line.stepExecutions[0].readCount}}</span>
+      <span>{{line.stepExecutions[0].processSkipCount}}</span>
+      <span>{{line.status}}</span>
     </mat-card>
-    <mat-card class="item row">
-      <span>01</span>
-      <span>20-02-2021</span>
-      <span>21</span>
-      <span>02</span>
-      <span>COMPLETED</span>
-    </mat-card>
-    <mat-card class="item empty">
+
+    <mat-card *ngIf="historyLines.length===0" class="item empty">
       <span>Non history !</span>
     </mat-card>
   </mat-card>

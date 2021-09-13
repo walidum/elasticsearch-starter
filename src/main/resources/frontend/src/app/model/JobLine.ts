@@ -1,6 +1,9 @@
-interface JobLine {
-  //JobInstanceDto jobInstance;
-  // List<StepExecutionDto> stepExecutions;
+import {JobInstanceDto} from "./JobInstanceDto";
+import {StepExecutionDto} from "./StepExecutionDto";
+
+export interface JobLine {
+  jobInstance: JobInstanceDto
+  stepExecutions: StepExecutionDto[];
   status: string;
   startTime: string;
   createTime: string;
