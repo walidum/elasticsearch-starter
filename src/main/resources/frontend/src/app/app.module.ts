@@ -16,13 +16,17 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatOptionModule} from "@angular/material/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NewJobComponent} from './modules/jobs/new-job/new-job.component';
+import {MatFileUploadModule} from "@martyganz/mat-file-upload";
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     JobsComponent,
-    HomeComponent
+    HomeComponent,
+    NewJobComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatSelectModule,
     MatOptionModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatFileUploadModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

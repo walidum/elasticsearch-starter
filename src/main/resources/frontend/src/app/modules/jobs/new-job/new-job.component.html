@@ -1,0 +1,30 @@
+<div class="header">
+  <mat-card class="header-content">
+    <span>Start new instance </span>
+  </mat-card>
+</div>
+
+<div class="table-container">
+  <mat-card class="card">
+    <div class="item">
+      <span>Batch name : </span>
+      <span>Batch name : </span>
+    </div>
+    <div class="item">
+      <span>Batch description : </span>
+      <span>Des </span>
+    </div>
+    <div class="item">
+      <span>Batch inputs : </span>
+    </div>
+    <div class="item" style="display: flex;flex-direction: column">
+      <mat-file-upload
+        [acceptedTypes]="'.svg'"
+      ></mat-file-upload>
+    </div>
+    <div class="item" style="margin-top: 1rem">
+      <button mat-raised-button color="primary">Start Batch</button>
+    </div>
+  </mat-card>
+</div>
+
